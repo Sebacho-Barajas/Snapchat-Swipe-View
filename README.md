@@ -12,6 +12,7 @@ Hide more ViewControllers in ALL the directions! Snapchat-Swipe-View mimics the 
 3.  If you are using Storyboards, ensure you have an arbitrary initial view controller set in your storyboard. If you use the code in step 4, the middle view controller will always be shown first, so this is needless but you will get an error if you don't do it. 
 
 4. In your App Delegate:
+# Swift
 ```swift
 func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
     // ...
@@ -24,6 +25,32 @@ func application(application: UIApplication, didFinishLaunchingWithOptions launc
     self.window?.rootViewController = snapContainer
     self.window?.makeKeyAndVisible()
     // ...
+}
+```
+# Objective-C
+```objective-c
+#import "ProductModuleName-Swift.h"
+// ....
+
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+// ...
+    UIStoryboard *storyboard;  
+    storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *left = [storyboard instantiateViewControllerWithIdentifier:@"left"];
+    UIViewController *middle = [storyboard instantiateViewControllerWithIdentifier:@"middle"];
+    UIViewController *right = [storyboard instantiateViewControllerWithIdentifier:@"right"];
+    UIViewController *top = [storyboard instantiateViewControllerWithIdentifier:@"top"];
+    
+    
+
+    SnapContainerViewController *snapContainer = [SnapContainerViewController containerViewWith:left middleVC:middle rightVC:right topVC:top];
+    
+     self.window.rootViewController = snapContainer;
+    [self.window makeKeyAndVisible ];
+    
+// ...
+
 }
 ```
 
